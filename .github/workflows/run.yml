@@ -36,3 +36,15 @@ jobs:
       - name: Use component
         run: |
           cargo r -p runner
+
+      - name: Install dependencies
+        run: |
+          cargo install --git https://github.com/bytecodealliance/wit-bindgen wit-bindgen-cli
+          sudo apt-get install python3 python3-pip
+          pip3 install wasmtime
+
+      - name: Python host
+        run: |
+          wit-bindgen host wasmtime-py ./target/component.wasm --out-dir python/markdown/
+          cd python 
+          python3 main.py

@@ -21,6 +21,25 @@ cargo r -p runner
 
 ```
 
+## Python host
+
+If you want to embed wasm component with Python host, you can follow the following steps.
+
+```bash 
+# Install wit-bindgen 
+cargo install --git https://github.com/bytecodealliance/wit-bindgen wit-bindgen-cli
+
+# Install wasmtime for python 
+pip3 install wasmtime
+
+# Generate python bindings
+wit-bindgen host wasmtime-py ./target/component.wasm --out-dir python/markdown/
+
+# Run! 
+cd python 
+python main.py
+```
+
 ## Details
 
 For more details, please read the comments in the source code or [this blog post](https://blog.mediosz.club/2022/11/17/how-to-use-wit-bindgen/).

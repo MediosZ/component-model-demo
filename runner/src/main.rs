@@ -29,6 +29,7 @@ fn main() -> Result<()> {
         .validate(true)
         .adapter_file(std::path::Path::new("./wits/wasi_snapshot_preview1.wasm"))?
         .encode()?;
+    std::fs::write("./target/component.wasm", &component)?;
     let component = Component::from_binary(&engine, &component)?;
 
     // after getting the component, we can instantiate a markdown instance.
