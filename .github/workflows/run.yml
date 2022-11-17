@@ -1,4 +1,4 @@
-name: run
+name: example
 
 on:
   workflow_dispatch:
@@ -34,5 +34,5 @@ jobs:
           cargo b --release --target wasm32-unknown-unknown -p app
 
       - name: Use component
-        runs: |
+        run: |
           cargo r -p runner
