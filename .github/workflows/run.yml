@@ -26,8 +26,8 @@ jobs:
 
       - name: Install Rust and wasm
         run: |
-          curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-          rustup target add wasm32-unkown-unkown
+          curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y --profile default
+          rustup target add wasm32-unknown-unknown
 
       - name: Build component
         run: |
