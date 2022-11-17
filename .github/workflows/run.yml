@@ -1,0 +1,38 @@
+name: run
+
+on:
+  workflow_dispatch:
+    inputs:
+      logLevel:
+        description: "Log level"
+        required: true
+        default: "info"
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Install apt-get packages
+        run: |
+          sudo ACCEPT_EULA=Y apt-get update
+          sudo ACCEPT_EULA=Y apt-get upgrade
+          sudo apt-get install wget git curl software-properties-common build-essential
+
+      - name: Install Rust and wasm
+        run: |
+          curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+          rustup target add wasm32-unkown-unkown
+
+      - name: Build component
+        run: |
+          cargo b --release --target wasm32-unknown-unknown -p app
+
+      - name: Use component
+        runs: |
+          cargo r -p runner
