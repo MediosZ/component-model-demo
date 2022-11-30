@@ -18,6 +18,7 @@ cargo b --release --target wasm32-unknown-unknown -p app
 
 # load the component in 'runner'
 cargo r -p runner
+# note that `./target/component.wasm` was saved in runner.
 
 ```
 
@@ -26,14 +27,11 @@ cargo r -p runner
 If you want to embed wasm component with Python host, you can follow the following steps.
 
 ```bash 
-# Install wit-bindgen 
-cargo install --git https://github.com/bytecodealliance/wit-bindgen wit-bindgen-cli
-
-# Install wasmtime for python 
+# Install wasmtime for python, which contains bindgen
 pip3 install wasmtime
 
 # Generate python bindings
-wit-bindgen host wasmtime-py ./target/component.wasm --out-dir python/markdown/
+python -m wasmtime.bindgen ./target/component.wasm --out-dir python/markdown/
 
 # Run! 
 cd python 
