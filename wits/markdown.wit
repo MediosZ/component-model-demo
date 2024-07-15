@@ -1,6 +1,0 @@
-interface exports {
-  render: func(input: string) -> string
-}
-world markdown {
-  default export exports
-}
