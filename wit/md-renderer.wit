@@ -1,0 +1,9 @@
+package demo:md-renderer@1.0.0;
+
+interface render {
+    render: func(s: string) -> string;
+}
+
+world md-renderer {
+    export render;
+}

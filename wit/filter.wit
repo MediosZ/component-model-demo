@@ -1,0 +1,9 @@
+package demo:word-filter@1.0.0;
+
+interface filter {
+    filter: func(s: string) -> string;
+}
+
+world word-filter {
+    export filter;
+}

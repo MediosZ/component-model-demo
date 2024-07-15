@@ -1,0 +1,33 @@
+[package]
+name = "caller"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+crate-type = ["cdylib"]
+
+[dependencies]
+anyhow = "1.0.86"
+wit-bindgen-rt = { version = "0.27.0", features = ["bitflags"] }
+clap = { version = "4.3.19", features = ["derive"] }
+
+[package.metadata.component]
+package = "demo:caller"
+proxy = true
+
+[package.metadata.component.dependencies]
+
+[package.metadata.component.target]
+path = "../wit/caller.wit"
+world = "caller"
+
+[package.metadata.component.target.dependencies]
+"demo:md-renderer" = { path = "../wit/md-renderer.wit" }
+"demo:word-filter" = { path = "../wit/filter.wit" }
+"wasi:http" = { path = "../wit/deps/http" }
+"wasi:clocks" = { path = "../wit/deps/clocks" }
+"wasi:io" = { path = "../wit/deps/io" }
+"wasi:random" = { path = "../wit/deps/random" }
+"wasi:cli" = { path = "../wit/deps/cli" }
+"wasi:filesystem" = { path = "../wit/deps/filesystem" }
+"wasi:sockets" = { path = "../wit/deps/sockets" }

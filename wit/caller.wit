@@ -1,0 +1,7 @@
+package demo:caller@1.0.0;
+
+world caller {
+  import demo:md-renderer/render@1.0.0;
+  import demo:word-filter/filter@1.0.0;
+  include wasi:http/proxy@0.2.0;
+}

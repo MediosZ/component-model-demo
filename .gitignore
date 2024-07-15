@@ -1,2 +1,4 @@
-target/
-python/markdown/
+JS/node_modules
+Rust/target
+/**/*.wasm
+Python/__pycache__
