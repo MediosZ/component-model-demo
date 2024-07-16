@@ -5,24 +5,24 @@ This demo will show how to use the component model to build a simple application
 
 This demo showcases a web application.
 
-- Rust: Web Server
+- Rust: Web Server using wasi-http
 - Python: String Filtering
 - JavaScript: HTML Rendering
 
 ## JS
 
-- use rollup to bundle external libs
-- use babel to transpile regex 
-- use marked v5.0.0
-- use componentizeJS directly to disable all wasi features.
+For JavaScript, we mainly use the ComponentizeJS to build the WebAssembly module. Note that we will not use `jco` cause we want to disable all wasi features, which can not be done by `jco` for now.
+
+We will use `marked` to render the markdown content. There are two problems we need to handle:
+1. We need to bundle the `marked` module into one JS file.
+2. We need to transpile the regex in `marked` module, and we need `marked(v5.0.0)`.
 
 ## Python
 
-- gen bindgen 
+For Python, we just need `componentize-py`.
 
 ## Rust
 
-- Use wasi-http
-- set proxy 
-- download wits
-- modify wasmtime crate
+It is relatively easy to build a WebAssembly module using Rust. We will use `wasi-http` to build a simple web server.
+
+First we need to download all `wits` from Wasmtime repository. Then we need to modify the `wasmtime` crate to support a large wasm file, specifically, we need to modify the `wasmtime` and set `max_core_instances_per_component` to 50.
